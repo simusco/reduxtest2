@@ -64,6 +64,7 @@ export default class Login extends Component {
         let login = this.props.login;
         if(login !== null && login.state === 'success'){
             this.props.navigation.navigate('Home');
+            return false;
         }
     }
 

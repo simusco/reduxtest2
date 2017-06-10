@@ -41,8 +41,12 @@ export default class Charge extends Component {
         headerLeft:null,
     };
 
-    componentWillUpdate(nextProps, nextState) {
+    componentWillMount(){
         this.props.refresh();
+    }
+
+    componentWillUpdate(nextProps, nextState) {
+
     }
 
     renderHeader = () => <ChargeSummary charges={this.props.charge.charges}/>;
