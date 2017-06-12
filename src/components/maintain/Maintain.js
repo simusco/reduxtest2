@@ -2,11 +2,7 @@ import React,{Component} from 'react';
 import {
     StyleSheet,
     View,
-    Navigator,
-    Text,
     Image,
-    ScrollView,
-    TouchableOpacity,
     Alert} from 'react-native';
 import NavGroup from './NavGroup';
 

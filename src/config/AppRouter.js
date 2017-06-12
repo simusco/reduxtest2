@@ -1,16 +1,15 @@
 import {StyleSheet,View,Text,Image} from 'react-native';
 import {StackNavigator, TabNavigator, addNavigationHelpers} from "react-navigation";
-import Charge from '../containers/ChargeContainer';
-import Login from '../containers/LoginContainer';
-import Maintain from '../containers/MaintainContainer';
+import ChargeContainer from '../containers/ChargeContainer';
+import MaintainContainer from '../containers/MaintainContainer';
 
 const Home = TabNavigator(
     {
-        Home: {
-            screen: Charge,
+        Charge: {
+            screen: ChargeContainer,
         },
         Maintain:{
-            screen:Maintain,
+            screen:MaintainContainer,
         }
     },
     {
@@ -32,14 +31,10 @@ const Home = TabNavigator(
     }
 );
 
-export default StackNavigator({
-    Login:{
-        screen:Login,
-    },
-    Home:{
-        screen:Home
-    },
-    Maintain:{
-        screen:Maintain
+export default StackNavigator(
+    {
+        Home:{
+            screen:Home
+        }
     }
-});
+);
