@@ -2,6 +2,7 @@ import {StyleSheet,View,Text,Image} from 'react-native';
 import {StackNavigator, TabNavigator, addNavigationHelpers} from "react-navigation";
 import ChargeContainer from '../containers/ChargeContainer';
 import MaintainContainer from '../containers/MaintainContainer';
+import KeywordContainer from '../containers/KeywordContainer';
 
 const Home = TabNavigator(
     {
@@ -10,6 +11,9 @@ const Home = TabNavigator(
         },
         Maintain:{
             screen:MaintainContainer,
+        },
+        Keyword:{
+            screen:KeywordContainer,
         }
     },
     {

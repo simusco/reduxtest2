@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { queryCharge } from '../actions/ChargeAction';
-import Charge from '../components/charge/Charge';
+import ChargeList from '../components/charge/ChargeList';
 
 const mapStateToProps = (state)=>{
     return {
@@ -16,4 +16,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps,mapDispatchToProps)(Charge);
+export default connect(mapStateToProps,mapDispatchToProps)(ChargeList);
