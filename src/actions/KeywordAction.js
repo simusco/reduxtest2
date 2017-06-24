@@ -1,4 +1,4 @@
-import {doPost} from '../utils/RequestUtil';
+import {doPost,doGet, toURL} from '../utils/RequestUtil';
 import {
     KEYWORD_LOADING,
     KEYWORD_LOADED,
@@ -29,15 +29,16 @@ export function addToBlack(text) {
 
 export function delKeyword(keywordId) {
     let params = {id:keywordId, pwd:'Plp123.'};
+    let url = toURL('http://draftbottle.dftrip.com','/draftbottle/text/keyword/del', params);
+
     return (dispatch)=>{
-        dispatch({type:KEYWORD_DEL_REQUEST});
-        return doPost('http://draftbottle.dftrip.com/draftbottle/text/keyword/del', params)
+        dispatch({type:KEYWORD_DEL_REQUEST,keywordId:keywordId});
+        return doPost(url, {})
             .then(res =>{
-                let r = res.result;
                 if(res.code === 100){
                     dispatch({type:KEYWORD_DEL_SUCCESS,keywordId:keywordId})
                 }else{
-                    dispatch({type:KEYWORD_DEL_ERROR,msg:r.msg})
+                    dispatch({type:KEYWORD_DEL_ERROR,msg:res.msg})
                 }
             });
     }

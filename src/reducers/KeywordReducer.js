@@ -9,6 +9,7 @@ import {
     KEYWORD_DEL_SUCCESS,
     KEYWORD_DEL_ERROR
 } from '../config/Constants';
+import Immutable from 'immutable';
 
 const initialState= {
     keywords:[],
@@ -34,33 +35,27 @@ export default function keyword(state=initialState, action) {
                 state:'error'
             };
         case KEYWORD_DEL_REQUEST:
-            return (function () {
-                let keywords = Object.assign({},state.keywords);
-                for(k of keywords){
-                    if(k.id === action.keywordId){
-                        k.state = 'deleting';
-                        break;
-                    }
+            let keywords1 = Immutable.fromJS(state.keywords);
+            keywords1.forEach((k)=>{
+                if(k.id === action.keywordId){
+                    k.state = 'deleting';
                 }
-                return Object.assign({},state, {keywords})
-            })();
+            });
+            return Object.assign({},state, {keywords:keywords1.toJS()});
         case KEYWORD_DEL_SUCCESS:
-            return (function () {
-                let keywords = Object.assign({},state.keywords);
-                keywords.filter((k)=>k.id === action.keywordId);
-                return Object.assign({},state, {keywords})
-            })();
+            let keywords2 = Immutable.fromJS(state.keywords);
+            keywords2 = keywords2.filter(function(value, index, array){
+                return value.get('id') !== action.keywordId;
+            });
+            return Object.assign({},state, {keywords:keywords2.toJS()});
         case KEYWORD_DEL_ERROR:
-            return (function () {
-                let keywords = Object.assign({},state.keywords);
-                for(k of keywords){
-                    if(k.id === action.keywordId){
-                        k.state = 'deleteError';
-                        break;
-                    }
+            let keywords3 = Immutable.fromJS(state.keywords);
+            keywords3.forEach((k)=>{
+                if(k.id === action.keywordId){
+                    k.state = 'deleteError';
                 }
-                return Object.assign({},state, {keywords})
-            })();
+            });
+            return Object.assign({},state, {keywords:keywords3.toJS()});
         default:
             return state;
     }

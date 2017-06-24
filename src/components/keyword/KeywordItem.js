@@ -15,35 +15,39 @@ const keywordStyles = StyleSheet.create({
         flexDirection:'column',
         flexGrow:1,
         flexShrink:0,
-        height:120,
+        height:140,
         borderTopWidth:StyleSheet.hairlineWidth,
-        borderTopColor:1,
+        borderTopColor:'#ccc',
         paddingLeft:4,
         paddingRight:4,
+        paddingTop:5,
+        paddingBottom:5,
+        backgroundColor:'#fff',
     },
     title:{
-        flex:4,
-        justifyContent:'flex-start',
-        alignItems:'center',
+        flex:1,
+        justifyContent:'center',
+        alignItems:'flex-start',
     },
     titleText:{
-        fontSize:24,
+        fontSize:20,
         fontWeight:'bold',
     },
     disabledUserNum:{
-        flex:3,
-        justifyContent:'start-flex',
-        alignItems:'center',
+        flex:1,
+        justifyContent:'center',
+        alignItems:'flex-start',
     },
     disabledUserNumText:{
         fontSize:18,
         color:'blue',
     },
     bar:{
-        flex:3,
+        flex:1,
         flexDirection:'row',
     },
     btn:{
+        flex:1,
         justifyContent:'center',
         alignItems:'center',
         backgroundColor:'red',
@@ -68,7 +72,7 @@ const keywordStyles = StyleSheet.create({
 
 const KeywordItem = ({keyword, addToBlack, delKeyword, queryDisabledUsers})=>{
     return (
-        <View style={keywordStyles.keyword}>
+        <View style={[keywordStyles.keyword,keyword.isBlack === 'Y' ? keywordStyles.isBlack: null]}>
             <View style={keywordStyles.title}>
                 <Text style={keywordStyles.titleText}>{keyword.text}</Text>
             </View>
@@ -76,13 +80,19 @@ const KeywordItem = ({keyword, addToBlack, delKeyword, queryDisabledUsers})=>{
                 <Text style={keywordStyles.disabledUserNumText}>有{keyword.disabledUserCount}个用户被拦截</Text>
             </View>
             <View style={keywordStyles.bar}>
-                <TouchableOpacity style={[keywordStyles.btn,keywordStyles.br]}  onPress={delKeyword(keyword.id)}>
+                <TouchableOpacity
+                    style={[keywordStyles.btn,keywordStyles.br]}
+                    onPress={()=>{delKeyword(keyword.id)}}>
                     <Text style={keywordStyles.btnText}>删除</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[keywordStyles.btn,keywordStyles.bl,keywordStyles.br]}  onPress={addToBlack(keyword.text)}>
+                <TouchableOpacity
+                    style={[keywordStyles.btn,keywordStyles.bl,keywordStyles.br]}
+                    onPress={()=>{addToBlack(keyword.text)}}>
                     <Text style={keywordStyles.btnText}>加入黑名单</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={[keywordStyles.btn,keywordStyles.bl]} onPress={queryDisabledUsers(keyword.id)}>
+                <TouchableOpacity
+                    style={[keywordStyles.btn,keywordStyles.bl]}
+                    onPress={()=>{queryDisabledUsers(keyword.id)}}>
                     <Text style={keywordStyles.btnText}>被禁用户</Text>
                 </TouchableOpacity>
             </View>

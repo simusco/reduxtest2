@@ -57,7 +57,7 @@ export default class KeywordList extends Component {
     ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     render() {
-        let {queryKeywords} = this.props;
+        let {keyword, queryKeywords} = this.props;
         return (
             <ListView
                 enableEmptySections

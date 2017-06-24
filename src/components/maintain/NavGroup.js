@@ -26,7 +26,7 @@ export default class NavGroup extends  Component{
             <View style={navGroupStyles.group}>
                 {
                     navs.items.map((nav,index)=>{
-                        return <Nav key={'nav_'+index} {...nav} isLast={navs.items.length == index+1}/>
+                        return <Nav key={'nav_'+index} {...nav} isLast={navs.items.length === index+1}/>
                     })
                 }
             </View>

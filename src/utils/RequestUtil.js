@@ -20,3 +20,16 @@ export function doGet(url, params){
         }
     }).then((response) => response.json());
 }
+
+export function toURL(hostUrl, methodUrl, obj){
+
+    let responseUrl = hostUrl+ methodUrl+'?';
+    for(let key in obj){//用javascript的for/in循环遍历对象的属性
+        responseUrl += key+"="+obj[key]+"&";
+    }
+    // alert(responseUrl);
+    let index = responseUrl.lastIndexOf('&');
+    responseUrl = responseUrl.substring(0,index);
+    return responseUrl;
+
+}

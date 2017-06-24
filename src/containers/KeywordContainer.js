@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { addToBlack,delKeyword,queryKeywords } from '../actions/KeywordAction';
+import { addToBlack,delKeyword,queryKeywords,queryDisabledUsers } from '../actions/KeywordAction';
 import KeywordList from '../components/keyword/KeywordList';
 
 const mapStateToProps = (state)=>{
