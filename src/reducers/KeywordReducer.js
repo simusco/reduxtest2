@@ -16,17 +16,44 @@ const initialState= {
     state:null
 }
 
+const addToBlackSuccess = (state, action)=>{
+    let newKeyword = action.newKeywords;
+    let keywords = Immutable.fromJS(state.keywords);
+    let flag = false;
+
+    keywords.forEach(function(value){
+        if(value.get('id') === newKeyword.id){
+            value.update('isBlack','Y');
+            flag = true;
+        }
+    });
+
+    if(!flag){
+        keywords.push(newKeyword);
+    }
+
+    return keywords.toJS();
+};
+
+const delSuccess = (state, action) => {
+    let keywords = Immutable.fromJS(state.keywords);
+    keywords = keywords.filter(function(value, index, array){
+        return value.get('id') !== action.keywordId;
+    });
+    return keywords.toJS();
+}
+
 export default function keyword(state=initialState, action) {
     switch (action.type){
         case KEYWORD_LOADING:
             return {
                 ...state,
-                state:'loading'
+                state:'doing'
             };
         case KEYWORD_LOADED:
             return {
                 ...state,
-                state:'loaded',
+                state:'done',
                 keywords:action.keywords
             };
         case KEYWORD_LOAD_ERROR:
@@ -35,27 +62,37 @@ export default function keyword(state=initialState, action) {
                 state:'error'
             };
         case KEYWORD_DEL_REQUEST:
-            let keywords1 = Immutable.fromJS(state.keywords);
-            keywords1.forEach((k)=>{
-                if(k.id === action.keywordId){
-                    k.state = 'deleting';
-                }
-            });
-            return Object.assign({},state, {keywords:keywords1.toJS()});
+            return {
+                ...state,
+                state:'doing'
+            };
         case KEYWORD_DEL_SUCCESS:
-            let keywords2 = Immutable.fromJS(state.keywords);
-            keywords2 = keywords2.filter(function(value, index, array){
-                return value.get('id') !== action.keywordId;
-            });
-            return Object.assign({},state, {keywords:keywords2.toJS()});
-        case KEYWORD_DEL_ERROR:
-            let keywords3 = Immutable.fromJS(state.keywords);
-            keywords3.forEach((k)=>{
-                if(k.id === action.keywordId){
-                    k.state = 'deleteError';
+            return Object.assign({},state,{
+                    keywords:delSuccess(state, action),
+                    state:'done',
                 }
-            });
-            return Object.assign({},state, {keywords:keywords3.toJS()});
+            );
+        case KEYWORD_DEL_ERROR:
+            return {
+                ...state,
+                state:'error'
+            };
+        case KEYWORD_ADD_TO_BLACK_REQUEST:
+            return {
+                ...state,
+                state:'doing'
+            };
+        case KEYWORD_ADD_TO_BLACK_SUCCESS:
+            return Object.assign({},state,{
+                    keywords:addToBlackSuccess(state,action),
+                    state:'done',
+                }
+            );
+        case KEYWORD_ADD_TO_BLACK_ERROR:
+            return {
+                ...state,
+                state:'error'
+            };
         default:
             return state;
     }

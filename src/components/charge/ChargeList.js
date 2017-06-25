@@ -61,7 +61,7 @@ export default class ChargeList extends Component {
                 refreshControl={
                     <RefreshControl
                         onRefresh={refresh}
-                        refreshing={charge.state === 'loading'}
+                        refreshing={charge.state === 'doing'}
                         tintColor="#ff0000"
                         title="加载中..."
                         colors={['#ff0000','#00ff00','#0000ff']}

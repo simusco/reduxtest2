@@ -67,7 +67,7 @@ export default class KeywordList extends Component {
                 refreshControl={
                     <RefreshControl
                         onRefresh={queryKeywords}
-                        refreshing={keyword.state === 'loading'}
+                        refreshing={keyword.state === 'doing'}
                         tintColor="#ff0000"
                         title="加载中..."
                         colors={['#ff0000','#00ff00','#0000ff']}

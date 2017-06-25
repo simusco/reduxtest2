@@ -14,14 +14,16 @@ import {
 export function addToBlack(text) {
     let params = {keywords:text,pwd:'Plp123.'};
     return (dispatch)=>{
+        let params = {keywords:text, pwd:'Plp123.'};
+        let url = toURL('http://draftbottle.dftrip.com','/draftbottle/text/keyword/add', params);
+
         dispatch({type:KEYWORD_ADD_TO_BLACK_REQUEST});
-        return doPost('http://draftbottle.dftrip.com/draftbottle/text/keyword/list', params)
+        return doPost(url, {})
             .then(res =>{
-                let r = res.result;
                 if(res.code === 100){
-                    dispatch({type:KEYWORD_ADD_TO_BLACK_SUCCESS,newKeywords:r})
+                    dispatch({type:KEYWORD_ADD_TO_BLACK_SUCCESS,newKeywords:res.result})
                 }else{
-                    dispatch({type:KEYWORD_ADD_TO_BLACK_ERROR,msg:r.msg});
+                    dispatch({type:KEYWORD_ADD_TO_BLACK_ERROR,msg:res.msg});
                 }
             });
     }
