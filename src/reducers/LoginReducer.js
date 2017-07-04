@@ -10,7 +10,7 @@ export default function login(state=initialState, action) {
             return {
                 ...state,
                 user:action.user,
-                state:'done',
+                state:'isLogin',
             };
         default:
             return state;

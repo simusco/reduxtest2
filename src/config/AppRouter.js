@@ -3,6 +3,7 @@ import {StackNavigator, TabNavigator, addNavigationHelpers} from "react-navigati
 import ChargeContainer from '../containers/ChargeContainer';
 import MaintainContainer from '../containers/MaintainContainer';
 import KeywordContainer from '../containers/KeywordContainer';
+import DisabledUserContainer from '../containers/DisabledUserContainer';
 
 const Home = TabNavigator(
     {
@@ -39,6 +40,9 @@ export default StackNavigator(
     {
         Home:{
             screen:Home
+        },
+        DisabledUser:{
+            screen:DisabledUserContainer
         }
     }
 );

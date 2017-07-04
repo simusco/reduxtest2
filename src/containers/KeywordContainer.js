@@ -18,10 +18,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         queryKeywords:()=>{
             dispatch(queryKeywords());
-        },
-        queryDisabledUsers:()=>{
-            dispatch(queryDisabledUsers());
-        },
+        }
     }
 }
 

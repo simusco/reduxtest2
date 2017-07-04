@@ -7,7 +7,8 @@ import {
     KEYWORD_ADD_TO_BLACK_ERROR,
     KEYWORD_DEL_REQUEST,
     KEYWORD_DEL_SUCCESS,
-    KEYWORD_DEL_ERROR
+    KEYWORD_DEL_ERROR,
+    KEYWORD
 } from '../config/Constants';
 import Immutable from 'immutable';
 
@@ -93,6 +94,12 @@ export default function keyword(state=initialState, action) {
                 ...state,
                 state:'error'
             };
+        case KEYWORD.loadDisabledUsers.success:
+            return {
+                ...state,
+                state:'done',
+                users:action.users
+            }
         default:
             return state;
     }

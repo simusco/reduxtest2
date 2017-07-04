@@ -46,12 +46,8 @@ export default class KeywordList extends Component {
     }
 
     renderRow = (row) => {
-        let {addToBlack, delKeyword, queryDisabledUsers} = this.props;
-        return <KeywordItem
-            keyword={row}
-            addToBlack={addToBlack}
-            delKeyword={delKeyword}
-            queryDisabledUsers={queryDisabledUsers}/>;
+        let {addToBlack, delKeyword, navigation} = this.props;
+        return <KeywordItem  keyword={row} addToBlack={addToBlack} delKeyword={delKeyword} navigation={navigation}/>;
     };
 
     ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});

@@ -4,7 +4,7 @@ import {addNavigationHelpers} from "react-navigation";
 import Login from './Login';
 
 const App = ({dispatch, nav, login, onClickWXLogin, onClickQQLogin})=>{
-    if(login !== null && login.state === 'success'){
+    if(login !== null && login.state === 'isLogin'){
         return (
             <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
         );
