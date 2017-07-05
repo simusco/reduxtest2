@@ -2,24 +2,33 @@ export const LOGIN_LOADING = 'LOGIN_LOADING';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 
-export const CHARGE_LOADING = 'CHARGE_LOADING';
-export const CHARGE_LOADED = 'CHARGE_LOADED';
-export const CHARGE_LOAD_ERROR = 'CHARGE_LOAD_ERROR';
-
-export const KEYWORD_LOADING = 'KEYWORD_LOADING';
-export const KEYWORD_LOADED = 'KEYWORD_LOADED';
-export const KEYWORD_LOAD_ERROR = 'KEYWORD_LOAD_ERROR';
-export const KEYWORD_ADD_TO_BLACK_REQUEST = 'KEYWORD_ADD_TO_BLACK_REQUEST';
-export const KEYWORD_ADD_TO_BLACK_SUCCESS = 'KEYWORD_ADD_TO_BLACK_SUCCESS';
-export const KEYWORD_ADD_TO_BLACK_ERROR = 'KEYWORD_ADD_TO_BLACK_ERROR';
-export const KEYWORD_DEL_REQUEST = 'KEYWORD_DEL_REQUEST';
-export const KEYWORD_DEL_SUCCESS = 'KEYWORD_DEL_SUCCESS';
-export const KEYWORD_DEL_ERROR = 'KEYWORD_DEL_ERROR';
+export const CHARGE = {
+  loadCharges:{
+      request:'charge/loadCharges/request',
+      success:'charge/loadCharges/success',
+      error:'charge/loadCharges/error',
+  }
+};
 
 export const KEYWORD = {
+    loadKeywords:{
+        request:'keyword/loadKeywords/request',
+        success:'keyword/loadKeywords/success',
+        error:'keyword/loadKeywords/error',
+    },
+    deleteKeyword:{
+        request:'keyword/deleteKeyword/request',
+        success:'keyword/deleteKeyword/success',
+        error:'keyword/deleteKeyword/error',
+    },
+    addToBlack:{
+        request:'keyword/addToBlack/request',
+        success:'keyword/addToBlack/success',
+        error:'keyword/addToBlack/error',
+    },
     loadDisabledUsers:{
-        request:'keyword:load:disabled:user:request',
-        success:'keyword:load:disabled:user:success',
-        error:'keyword:load:disabled:user:error',
+        request:'keyword/loadDisabledUsers/request',
+        success:'keyword/loadDisabledUsers/success',
+        error:'keyword/loadDisabledUsers/error',
     },
 };

@@ -1,15 +1,4 @@
-import {
-    KEYWORD_LOADING,
-    KEYWORD_LOADED,
-    KEYWORD_LOAD_ERROR,
-    KEYWORD_ADD_TO_BLACK_REQUEST,
-    KEYWORD_ADD_TO_BLACK_SUCCESS,
-    KEYWORD_ADD_TO_BLACK_ERROR,
-    KEYWORD_DEL_REQUEST,
-    KEYWORD_DEL_SUCCESS,
-    KEYWORD_DEL_ERROR,
-    KEYWORD
-} from '../config/Constants';
+import { KEYWORD } from '../config/Constants';
 import Immutable from 'immutable';
 
 const initialState= {
@@ -46,60 +35,54 @@ const delSuccess = (state, action) => {
 
 export default function keyword(state=initialState, action) {
     switch (action.type){
-        case KEYWORD_LOADING:
+        case KEYWORD.loadKeywords.request:
             return {
                 ...state,
                 state:'doing'
             };
-        case KEYWORD_LOADED:
+        case KEYWORD.loadKeywords.success:
             return {
                 ...state,
                 state:'done',
                 keywords:action.keywords
             };
-        case KEYWORD_LOAD_ERROR:
+        case KEYWORD.loadKeywords.error:
             return {
                 ...state,
                 state:'error'
             };
-        case KEYWORD_DEL_REQUEST:
+        case KEYWORD.deleteKeyword.request:
             return {
                 ...state,
                 state:'doing'
             };
-        case KEYWORD_DEL_SUCCESS:
+        case KEYWORD.deleteKeyword.success:
             return Object.assign({},state,{
                     keywords:delSuccess(state, action),
                     state:'done',
                 }
             );
-        case KEYWORD_DEL_ERROR:
+        case KEYWORD.deleteKeyword.error:
             return {
                 ...state,
                 state:'error'
             };
-        case KEYWORD_ADD_TO_BLACK_REQUEST:
+        case KEYWORD.addToBlack.request:
             return {
                 ...state,
                 state:'doing'
             };
-        case KEYWORD_ADD_TO_BLACK_SUCCESS:
+        case KEYWORD.addToBlack.success:
             return Object.assign({},state,{
                     keywords:addToBlackSuccess(state,action),
                     state:'done',
                 }
             );
-        case KEYWORD_ADD_TO_BLACK_ERROR:
+        case KEYWORD.addToBlack.error:
             return {
                 ...state,
                 state:'error'
             };
-        case KEYWORD.loadDisabledUsers.success:
-            return {
-                ...state,
-                state:'done',
-                users:action.users
-            }
         default:
             return state;
     }

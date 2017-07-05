@@ -7,7 +7,10 @@ import {
     TouchableOpacity,
     Dimensions
 } from 'react-native';
+import AppNavigator from '../router';
+import {addNavigationHelpers} from "react-navigation";
 import Swiper from 'react-native-swiper';
+
 
 const loginStyles = StyleSheet.create({
     container: {
@@ -73,6 +76,17 @@ const Login = ({onClickWXLogin, onClickQQLogin})=>{
             </View>
         </View>
     );
-}
+};
 
-export default Login;
+const App = ({dispatch, nav, login, onClickWXLogin, onClickQQLogin})=>{
+    if(login !== null && login.state === 'isLogin'){
+        return (
+            <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
+        );
+    }
+    return (
+        <Login onClickWXLogin={onClickWXLogin} onClickQQLogin={onClickQQLogin} />
+    );
+};
+
+export default App;

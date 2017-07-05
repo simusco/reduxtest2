@@ -6,7 +6,8 @@ import {
     Image,
     Button,
     ListView,
-    RefreshControl
+    RefreshControl,
+    TouchableOpacity
 } from 'react-native';
 
 const disabledUserListStyles = StyleSheet.create({
@@ -23,27 +24,27 @@ const disabledUserListStyles = StyleSheet.create({
 export default class DisabledUserList extends Component {
 
     componentWillMount(){
-        let {state} = this.props.navigation;
-        this.props.queryDisabledUsers(state.params.keywordId);
+        let {navigation:{state:{params}},queryDisabledUsers} = this.props;
+        queryDisabledUsers(params.keywordId);
     }
 
     renderRow = (row) => {
-        return <View><Text>{row.nickName}</Text></View>;
+        let {toTest} = this.props;
+        return <View><TouchableOpacity onPress={()=>toTest(row)}><Text>{row.nickName}</Text></TouchableOpacity></View>;
     };
 
     ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
 
     render() {
-        let {users} = this.props;
+        let {disabledUser} = this.props;
         return (
             <ListView
                 enableEmptySections
                 style={disabledUserListStyles.container}
-                dataSource={this.ds.cloneWithRows(users)}
+                dataSource={this.ds.cloneWithRows(disabledUser.users)}
                 renderRow={this.renderRow}
                 showsVerticalScrollIndicator={false}
             />
-
         );
     }
 }

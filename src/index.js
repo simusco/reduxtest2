@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {AppRegistry} from 'react-native';
-import App from './containers/AppContainer';
+import App from './containers/LoginContainer';
 import configureStore from './store';
 import {Provider} from 'react-redux';
 

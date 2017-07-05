@@ -1,5 +1,6 @@
 import { connect } from 'react-redux';
-import { addToBlack,delKeyword,queryKeywords,queryDisabledUsers } from '../actions/KeywordAction';
+import {NavigationActions} from "react-navigation";
+import { addToBlack,delKeyword,queryKeywords , queryDisabledUsers} from '../actions/KeywordAction';
 import KeywordList from '../components/keyword/KeywordList';
 
 const mapStateToProps = (state)=>{
@@ -8,7 +9,7 @@ const mapStateToProps = (state)=>{
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch,navigation) => {
     return {
         addToBlack:(text)=>{
             dispatch(addToBlack(text));
@@ -18,6 +19,14 @@ const mapDispatchToProps = (dispatch) => {
         },
         queryKeywords:()=>{
             dispatch(queryKeywords());
+        },
+        queryDisabledUsers:(keywordId)=>{
+            dispatch(NavigationActions.navigate(
+                {
+                    routeName:'DisabledUser',
+                    params:{'keywordId':keywordId}
+                }
+            ));
         }
     }
 }

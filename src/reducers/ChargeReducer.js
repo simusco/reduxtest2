@@ -1,4 +1,4 @@
-import {CHARGE_LOADING,CHARGE_LOADED,CHARGE_LOAD_ERROR} from '../config/Constants';
+import {CHARGE} from '../config/Constants';
 
 const initialState= {
     charges:[],
@@ -7,18 +7,18 @@ const initialState= {
 
 export default function charge(state=initialState, action) {
     switch (action.type){
-        case CHARGE_LOADING:
+        case CHARGE.loadCharges.request:
             return {
                 ...state,
                 state:'doing'
             };
-        case CHARGE_LOADED:
+        case CHARGE.loadCharges.success:
             return {
                 ...state,
                 state:'done',
                 charges:action.charges
             };
-        case CHARGE_LOAD_ERROR:
+        case CHARGE.loadCharges.error:
             return {
                 ...state,
                 state:'error'

@@ -70,7 +70,7 @@ const keywordStyles = StyleSheet.create({
 });
 
 
-const KeywordItem = ({keyword, addToBlack, delKeyword, navigation})=>{
+const KeywordItem = ({keyword, addToBlack, delKeyword, queryDisabledUsers})=>{
     return (
         <View style={[keywordStyles.keyword,keyword.isBlack === 'Y' ? keywordStyles.isBlack: null]}>
             <View style={keywordStyles.title}>
@@ -92,7 +92,7 @@ const KeywordItem = ({keyword, addToBlack, delKeyword, navigation})=>{
                 </TouchableOpacity>
                 <TouchableOpacity
                     style={[keywordStyles.btn,keywordStyles.bl]}
-                    onPress={()=>{navigation.navigate('DisabledUser',{keywordId:keyword.id})}}>
+                    onPress={()=>{queryDisabledUsers(keyword.id)}}>
                     <Text style={keywordStyles.btnText}>被禁用户</Text>
                 </TouchableOpacity>
             </View>

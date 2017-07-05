@@ -1,12 +1,19 @@
 import {combineReducers} from 'redux';
 import chargeReducer from './ChargeReducer';
-import appReducer from './AppReducer';
 import loginReducer from './LoginReducer';
-import KeywordReducer from './KeywordReducer';
+import keywordReducer from './KeywordReducer';
+import disabledUsersReducer from './DisabledUsersReducer';
+
+import AppNavigator from '../router';
+
+const appReducer = (state, action) => {
+    return AppNavigator.router.getStateForAction(action, state);
+};
 
 export default combineReducers({
-    charge:chargeReducer,
     nav:appReducer,
+    charge:chargeReducer,
     login:loginReducer,
-    keyword:KeywordReducer,
+    keyword:keywordReducer,
+    disabledUser:disabledUsersReducer
 });
