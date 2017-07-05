@@ -30,4 +30,4 @@ class Main extends Component{
     }
 }
 
-AppRegistry.registerComponent('dfapp',()=>Main);
+AppRegistry.registerComponent('reduxtest2',()=>Main);
