@@ -19,11 +19,11 @@ let middlewares = [logger, thunk];
 let createAppStore = applyMiddleware(...middlewares)(createStore);
 
 export default function configureStore(onComplete:()=>void) {
-    /*const store = autoRehydrate()(createAppStore)(reducers);
+    const store = autoRehydrate()(createAppStore)(reducers);
     let opt = {
         storage:AsyncStorage,
         transform:[]
     };
-    persistStore(store,opt,onComplete);*/
+    persistStore(store,opt,onComplete);
     return createAppStore(reducers);
 }

@@ -23,6 +23,14 @@ const disabledUserListStyles = StyleSheet.create({
 
 export default class DisabledUserList extends Component {
 
+    static navigationOptions = {
+        headerTitle:'被拦截的用户',
+        headerTitleStyle:{
+            alignSelf:'center',
+            justifyContent:'center'
+        },
+    };
+
     componentWillMount(){
         let {navigation:{state:{params}},queryDisabledUsers} = this.props;
         queryDisabledUsers(params.keywordId);

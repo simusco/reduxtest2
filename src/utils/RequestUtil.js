@@ -10,15 +10,16 @@ export function doPost(url, params){
     }).then((response) => response.json());
 }
 
-export function doGet(url, params){
+export async function doGet(url, params){
     params = params | {};
-    return fetch(url, {
+    let response = await fetch(url, {
         method: 'GET',
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
         }
-    }).then((response) => response.json());
+    });
+    return response.json();
 }
 
 export function toURL(hostUrl, methodUrl, obj){

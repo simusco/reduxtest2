@@ -1,6 +1,6 @@
 import React,{Component} from 'react';
 import {AppRegistry} from 'react-native';
-import App from './containers/LoginContainer';
+import App from './containers/AppContainer';
 import configureStore from './store';
 import {Provider} from 'react-redux';
 
@@ -22,12 +22,15 @@ class Main extends Component{
         };
     }
     render(){
+        if (this.state.isLoading) {
+            return null;
+        }
         return (
             <Provider store={this.state.store}>
-                <App/>
+                <App />
             </Provider>
         );
     }
 }
 
-AppRegistry.registerComponent('reduxtest2',()=>Main);
+AppRegistry.registerComponent('dfapp',()=>Main);
