@@ -8,7 +8,7 @@ import {
     ListView,
     RefreshControl
 } from 'react-native';
-
+import * as Progress from 'react-native-progress';
 import ChargeItem from './ChargeItem';
 import ChargeSummary from './ChargeSummary';
 
@@ -21,6 +21,11 @@ const chargeStyles = StyleSheet.create({
     icon:{
         width:30,
         height:30
+    },
+    progress:{
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
     }
 });
 
@@ -51,6 +56,14 @@ export default class ChargeList extends Component {
 
     render() {
         let {charge, refresh} = this.props;
+        if(charge.state === 'doing'){
+            return (
+                <View style={chargeStyles.progress}>
+                    <Progress.Circle size={60} indeterminate={true} />
+                </View>
+            );
+        }
+
         return (
             <ListView
                 enableEmptySections
@@ -69,7 +82,6 @@ export default class ChargeList extends Component {
                 }
                 showsVerticalScrollIndicator={false}
             />
-
         );
     }
 }
