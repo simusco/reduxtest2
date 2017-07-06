@@ -56,12 +56,16 @@ export default class ChargeList extends Component {
 
     render() {
         let {charge, refresh} = this.props;
-        if(charge.state === 'doing'){
-            return (
-                <View style={chargeStyles.progress}>
-                    <Progress.Circle size={60} indeterminate={true} />
-                </View>
-            );
+        {
+        /*
+         if(charge.state === 'doing'){
+         return (
+         <View style={chargeStyles.progress}>
+         <Progress.Circle size={60} indeterminate={true} />
+         </View>
+         );
+         }
+         */
         }
 
         return (

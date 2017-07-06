@@ -88,6 +88,8 @@ const login2Styles = StyleSheet.create({
     },
     formInput:{
         flex:1,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     formInputText:{
 
