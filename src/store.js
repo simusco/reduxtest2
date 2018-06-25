@@ -12,7 +12,7 @@ const logger = store => next => action =>{
 
     let result = next(action);
     console.log('next state',store.getState());
-    console.log('hello');
+    console.log('hello22222');
     return result;
 }
 
